@@ -30,3 +30,16 @@ they'll move with it.
 Then add these float points to the array in the Object Buoyancy script. If the object is small,
 or you don't need the increased accuracy of the float points, you can simply put the 
 object's own transform into this array and leave it at that.
+
+
+
+
+Credits -
+Mesh from Low Poly Water Pack by Ebru Dogan on the Unity Asset store - 
+Available at: https://assetstore.unity.com/packages/tools/particles-effects/lowpoly-water-107563
+
+Caustics texture from Abode Substance 3D Designer examples -
+Available at: https://substance3d.adobe.com/documentation/sddoc/version-11-2-215286709.html
+
+Other textures avaliable from Ben Cloward youtube - specfically water material tutorials -
+Available at: https://www.youtube.com/@BenCloward
