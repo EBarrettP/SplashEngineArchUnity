@@ -129,7 +129,7 @@ Material:
     - _UVSec: 0
     - _WaterDarkness: 0
     - _WaveHeight: 1
-    - _WavesFrequency: 0.03
+    - _WavesFrequency: 0.04
     - _WavesSpeed: 0.06
     - _WavesSpeed_1: 1
     - _ZWrite: 1

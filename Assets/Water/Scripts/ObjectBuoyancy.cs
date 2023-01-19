@@ -24,8 +24,8 @@ public class ObjectBuoyancy : MonoBehaviour
 
     private int floatPointsUnderwater;
 
-    [SerializeField]private bool underwater;
-    public bool inWater;
+    private bool underwater;
+    private bool inWater;
     
     // Start is called before the first frame update
     void Start()
