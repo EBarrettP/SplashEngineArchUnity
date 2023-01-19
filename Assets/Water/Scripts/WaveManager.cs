@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -16,10 +13,11 @@ public class WaveManager : MonoBehaviour
     [Range(0f, 20f), Tooltip("Speed of waves")]
     [SerializeField] private float waveSpeed = 6f;
     
-    //[SerializeField] private bool sharedMaterial = true;
+    [SerializeField] private bool sharedMaterial = true;
 
     public Transform water;
-
+    [SerializeField] private Material baseWaterMat;
+    
     private Material waterMat;
     private Texture2D wavesDisplacement;
     
@@ -28,34 +26,29 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         SetVariables();
+        UpdateMaterial();
     }
 
     void SetVariables()
     {
-        /*if (sharedMaterial)
-        {
-            waterMat =water.GetComponent<Renderer>().sharedMaterial : waterMat = water.GetComponent<Renderer>().material;
-        }
-        else
-        {*/
-        waterMat = water.GetComponent<Renderer>().material;
-        
+        water.GetComponent<Renderer>().material = baseWaterMat;
+        waterMat = sharedMaterial ? water.GetComponent<Renderer>().sharedMaterial : water.GetComponent<Renderer>().material;
         wavesDisplacement = (Texture2D) waterMat.GetTexture("_WavesDisplacement");
     }
 
     public float WaterHeightAtPosition(Vector3 position)
     {
-        return water.position.y + wavesDisplacement.GetPixelBilinear(position.x * (waveFrequency/100), 
-            position.z * (waveFrequency/100) + Time.time * (waveSpeed/100)).g * waveHeight * water.localScale.x;
+        waveFrequency = waterMat.GetFloat("_WavesFrequency");
+        waveHeight = waterMat.GetFloat("_WaveHeight");
+        waveSpeed = waterMat.GetFloat("_WavesSpeed");
+                    
+        return water.position.y + wavesDisplacement.GetPixelBilinear(position.x * (waveFrequency), 
+            position.z * (waveFrequency) + Time.time * (waveSpeed)).g * waveHeight * water.localScale.x;
     }
 
     private void OnValidate()
     {
-        if (!waterMat)
-        {
-            SetVariables();
-        }
-
+        SetVariables();
         UpdateMaterial();
     }
 

@@ -68,7 +68,7 @@ public class ObjectBuoyancy : MonoBehaviour
 
                 if (difference < 0)
                 {
-                    _Rigidbody.AddForceAtPosition(Vector3.up * floatingPower * Mathf.Abs(difference),
+                    _Rigidbody.AddForceAtPosition(Vector3.up * (floatingPower * Mathf.Abs(difference)),
                         floatPoints[i].position,
                         ForceMode.Force);
                     floatPointsUnderwater += 1;
